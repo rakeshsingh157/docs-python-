@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation - remindeme</title>
+    <meta name="description" content="Complete API documentation for the remindeme event management system.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/doc-styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="new-index.html" class="nav-logo">
+                <i class="fas fa-calendar-check"></i>
+                <span>remindeme</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">← Back to Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-content">
+            <h3>Documentation</h3>
+            <nav class="sidebar-nav">
+                <a href="#overview" class="sidebar-link active">Overview</a>
+                <a href="#authentication" class="sidebar-link">Authentication</a>
+                <a href="#users" class="sidebar-link">Users</a>
+                <a href="#events" class="sidebar-link">Events</a>
+                <a href="#collaboration" class="sidebar-link">Collaboration</a>
+                <a href="#ai-assistant" class="sidebar-link">AI Assistant</a>
+                <a href="#errors" class="sidebar-link">Error Handling</a>
+            </nav>
+            
+            <div class="sidebar-section">
+                <h4>Other Docs</h4>
+                <a href="database-schema.html" class="sidebar-link">Database Schema</a>
+                <a href="technical-specs.html" class="sidebar-link">Technical Specs</a>
+                <a href="deployment-guide.html" class="sidebar-link">Deployment Guide</a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-wrapper">
+            <!-- Overview Section -->
+            <section id="overview" class="doc-section">
+                <h1>API Documentation</h1>
+                <p class="lead">
+                    Welcome to the remindeme API documentation. This comprehensive guide will help you 
+                    integrate with our event management system using RESTful APIs.
+                </p>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>Base URL</h3>
+                        <code>http://127.0.0.1:5000</code>
+                        <p>All API requests should be made to this base URL.</p>
+                    </div>
+                </div>
+
+                <h2>Quick Start</h2>
+                <p>
+                    To get started with the remindeme API, you'll need to authenticate your requests 
+                    and understand our response format.
+                </p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Example Request</span>
+                        <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code" title="Copy to clipboard">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    <pre><code class="language-bash">curl -X GET "http://127.0.0.1:5000/events" \
+  -H "Content-Type: application/json"</code></pre>
+                </div>
+            </section>
+
+            <!-- Authentication Section -->
+            <section id="authentication" class="doc-section">
+                <h2>Authentication</h2>
+                <p>
+                    The remindeme API uses session-based authentication for web applications and 
+                    token-based authentication for API access.
+                </p>
+
+                <h3>Session Authentication</h3>
+                <p>For web applications, use the login endpoint to establish a session:</p>
+
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method post">POST</span>
+                        <span class="path">/auth/login</span>
+                    </div>
+                    <div class="endpoint-content">
+                        <h4>Request Body</h4>
+                        <div class="code-block">
+                            <pre><code class="language-json">{
+  "email": "user@example.com",
+  "password": "securepassword"
+}</code></pre>
+                        </div>
+
+                        <h4>Response</h4>
+                        <div class="code-block">
+                            <pre><code class="language-json">{
+  "success": true,
+  "message": "Login successful",
+  "user": {
+    "id": 1,
+    "username": "johndoe",
+    "email": "user@example.com"
+  }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Registration</h3>
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method post">POST</span>
+                        <span class="path">/auth/register</span>
+                    </div>
+                    <div class="endpoint-content">
+                        <h4>Request Body</h4>
+                        <div class="code-block">
+                            <pre><code class="language-json">{
+  "username": "johndoe",
+  "email": "user@example.com",
+  "password": "securepassword"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Users Section -->
+            <section id="users" class="doc-section">
+                <h2>Users</h2>
+                <p>Manage user profiles and account information.</p>
+
+                <h3>Get User Profile</h3>
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method get">GET</span>
+                        <span class="path">/user/profile</span>
+                    </div>
+                    <div class="endpoint-content">
+                        <p>Retrieve the current user's profile information.</p>
+                        
+                        <h4>Response</h4>
+                        <div class="code-block">
+                            <pre><code class="language-json">{
+  "success": true,
+  "user": {
+    "id": 1,
+    "username": "johndoe",
+    "email": "user@example.com",
+    "created_at": "2025-01-01T00:00:00Z",
+    "timezone": "Asia/Kolkata"
+  }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Update User Profile</h3>
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method put">PUT</span>
+                        <span class="path">/user/profile</span>
+                    </div>
+                    <div class="endpoint-content">
+                        <h4>Request Body</h4>
+                        <div class="code-block">
+                            <pre><code class="language-json">{
+  "username": "newusername",
+  "email": "newemail@example.com",
+  "timezone": "America/New_York"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Events Section -->
+            <section id="events" class="doc-section">
+                <h2>Events</h2>
+                <p>Create, read, update, and delete events and tasks.</p>
+
+                <h3>List Events</h3>
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method get">GET</span>
+                        <span class="path">/events</span>
+                    </div>
+                    <div class="endpoint-content">
+                        <p>Retrieve all events for the authenticated user.</p>
+                        
+                        <h4>Query Parameters</h4>
+                        <div class="params-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Parameter</th>
+                                        <th>Type</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>start_date</code></td>
+                                        <td>string</td>
+                                        <td>Filter events from this date (YYYY-MM-DD)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>end_date</code></td>
+                                        <td>string</td>
+                                        <td>Filter events until this date (YYYY-MM-DD)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>limit</code></td>
+                                        <td>integer</td>
+                                        <td>Number of events to return (default: 50)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4>Response</h4>
+                        <div class="code-block">
+                            <pre><code class="language-json">{
+  "success": true,
+  "events": [
+    {
+      "id": 1,
+      "title": "Team Meeting",
+      "description": "Weekly team sync",
+      "start_date": "2025-01-15",
+      "start_time": "10:00:00",
+      "end_time": "11:00:00",
+      "category": "work",
+      "color": "#3b82f6",
+      "created_at": "2025-01-01T00:00:00Z"
+    }
+  ],
+  "total": 1
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Create Event</h3>
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method post">POST</span>
+                        <span class="path">/events</span>
+                    </div>
+                    <div class="endpoint-content">
+                        <h4>Request Body</h4>
+                        <div class="code-block">
+                            <pre><code class="language-json">{
+  "title": "Team Meeting",
+  "description": "Weekly team sync",
+  "start_date": "2025-01-15",
+  "start_time": "10:00:00",
+  "end_time": "11:00:00",
+  "category": "work",
+  "color": "#3b82f6"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Update Event</h3>
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method put">PUT</span>
+                        <span class="path">/events/{id}</span>
+                    </div>
+                </div>
+
+                <h3>Delete Event</h3>
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method delete">DELETE</span>
+                        <span class="path">/events/{id}</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Collaboration Section -->
+            <section id="collaboration" class="doc-section">
+                <h2>Collaboration</h2>
+                <p>Collaborate with team members on events and tasks.</p>
+
+                <h3>Share Event</h3>
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method post">POST</span>
+                        <span class="path">/events/{id}/share</span>
+                    </div>
+                    <div class="endpoint-content">
+                        <h4>Request Body</h4>
+                        <div class="code-block">
+                            <pre><code class="language-json">{
+  "email": "colleague@example.com",
+  "permission": "edit"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>List Collaborators</h3>
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method get">GET</span>
+                        <span class="path">/collaboration/users</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Assistant Section -->
+            <section id="ai-assistant" class="doc-section">
+                <h2>AI Assistant</h2>
+                <p>Interact with the AI assistant for intelligent task management.</p>
+
+                <h3>Chat with AI</h3>
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method post">POST</span>
+                        <span class="path">/ai/chat</span>
+                    </div>
+                    <div class="endpoint-content">
+                        <h4>Request Body</h4>
+                        <div class="code-block">
+                            <pre><code class="language-json">{
+  "message": "Schedule a meeting with John tomorrow at 2 PM"
+}</code></pre>
+                        </div>
+
+                        <h4>Response</h4>
+                        <div class="code-block">
+                            <pre><code class="language-json">{
+  "success": true,
+  "response": "I've scheduled a meeting with John for tomorrow at 2:00 PM. Would you like me to add any additional details?",
+  "actions": [
+    {
+      "type": "create_event",
+      "data": {
+        "title": "Meeting with John",
+        "start_date": "2025-01-16",
+        "start_time": "14:00:00",
+        "end_time": "15:00:00"
+      }
+    }
+  ]
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>AI Schedule Optimization</h3>
+                <div class="endpoint">
+                    <div class="endpoint-header">
+                        <span class="method post">POST</span>
+                        <span class="path">/ai/optimize-schedule</span>
+                    </div>
+                    <div class="endpoint-content">
+                        <p>Get AI suggestions for optimizing your schedule.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Error Handling Section -->
+            <section id="errors" class="doc-section">
+                <h2>Error Handling</h2>
+                <p>Understanding API error responses and status codes.</p>
+
+                <h3>HTTP Status Codes</h3>
+                <div class="status-codes">
+                    <div class="status-code success">
+                        <span class="code">200</span>
+                        <span class="description">OK - Request successful</span>
+                    </div>
+                    <div class="status-code success">
+                        <span class="code">201</span>
+                        <span class="description">Created - Resource created successfully</span>
+                    </div>
+                    <div class="status-code error">
+                        <span class="code">400</span>
+                        <span class="description">Bad Request - Invalid request data</span>
+                    </div>
+                    <div class="status-code error">
+                        <span class="code">401</span>
+                        <span class="description">Unauthorized - Authentication required</span>
+                    </div>
+                    <div class="status-code error">
+                        <span class="code">404</span>
+                        <span class="description">Not Found - Resource not found</span>
+                    </div>
+                    <div class="status-code error">
+                        <span class="code">500</span>
+                        <span class="description">Internal Server Error - Server error</span>
+                    </div>
+                </div>
+
+                <h3>Error Response Format</h3>
+                <div class="code-block">
+                    <pre><code class="language-json">{
+  "success": false,
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "The provided data is invalid",
+    "details": {
+      "title": "Title is required",
+      "start_date": "Invalid date format"
+    }
+  }
+}</code></pre>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    
+    <script>
+        // Smooth scrolling for sidebar links
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Update active link
+                    document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Update active link on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.doc-section');
+            const sidebarLinks = document.querySelectorAll('.sidebar-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            sidebarLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Copy code function
+        function copyCode(button) {
+            const codeBlock = button.closest('.code-block').querySelector('code');
+            const text = codeBlock.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const icon = button.querySelector('i');
+                icon.classList.remove('fa-copy');
+                icon.classList.add('fa-check');
+                
+                setTimeout(() => {
+                    icon.classList.remove('fa-check');
+                    icon.classList.add('fa-copy');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

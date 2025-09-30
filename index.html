@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>remindeme - Smart Event Management System</title>
+    <meta name="description" content="A comprehensive event management system with AI-powered scheduling, team collaboration, and intelligent task management.">
+    <meta name="keywords" content="event management, task scheduling, AI assistant, team collaboration, productivity">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader">
+            <div class="loader-circle"></div>
+            <div class="loader-text">remindeme</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <i class="fas fa-calendar-check"></i>
+                <span>remindeme</span>
+            </a>
+            
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#features" class="nav-link">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#tech-stack" class="nav-link">Tech Stack</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Documentation <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#documentation" class="dropdown-link">Overview</a></li>
+                        <li><a href="api-documentation.html" class="dropdown-link">API Docs</a></li>
+                        <li><a href="database-schema.html" class="dropdown-link">Database</a></li>
+                        <li><a href="technical-specs.html" class="dropdown-link">Tech Specs</a></li>
+                        <li><a href="deployment-guide.html" class="dropdown-link">Deploy Guide</a></li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" title="Toggle navigation menu">
+                <i class="fas fa-bars"></i>
+                <span class="sr-only">Toggle navigation menu</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Smart Event Management
+                    <br>Made Simple
+                </h1>
+                <p class="hero-subtitle">
+                    Organize your life with AI-powered scheduling, seamless team collaboration, 
+                    and intelligent task management. Never miss an important event again.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#documentation" class="btn btn-primary">
+                        <i class="fas fa-book-open"></i>
+                        View Documentation
+                    </a>
+                    <a href="api-documentation.html" class="btn btn-secondary">
+                        <i class="fas fa-code"></i>
+                        API Reference
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <img src="assets/images/home.png" alt="remindeme Dashboard" class="hero-image">
+                
+                <!-- Floating Cards -->
+                <div class="floating-card floating-card-1">
+                    <i class="fas fa-brain"></i>
+                    <span>AI Assistant</span>
+                </div>
+                
+                <div class="floating-card floating-card-2">
+                    <i class="fas fa-users"></i>
+                    <span>Team Collaboration</span>
+                </div>
+                
+                <div class="floating-card floating-card-3">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Smart Scheduling</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Powerful Features</h2>
+                <p class="section-subtitle">
+                    Everything you need to manage events, collaborate with teams, 
+                    and stay organized with the help of artificial intelligence.
+                </p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="feature-title">AI-Powered Assistant</h3>
+                    <p class="feature-description">
+                        Get intelligent suggestions for scheduling, task prioritization, 
+                        and event planning with our advanced AI assistant.
+                    </p>
+                    <a href="#" class="feature-link">
+                        Learn more
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Smart Scheduling</h3>
+                    <p class="feature-description">
+                        Automatically optimize your schedule with conflict detection, 
+                        time zone management, and intelligent recommendations.
+                    </p>
+                    <a href="#" class="feature-link">
+                        Learn more
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="feature-title">Team Collaboration</h3>
+                    <p class="feature-description">
+                        Work seamlessly with your team through shared calendars, 
+                        task assignments, and real-time collaboration features.
+                    </p>
+                    <a href="#" class="feature-link">
+                        Learn more
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Mobile Responsive</h3>
+                    <p class="feature-description">
+                        Access your events and tasks from anywhere with our 
+                        fully responsive design that works on all devices.
+                    </p>
+                    <a href="#" class="feature-link">
+                        Learn more
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3 class="feature-title">Smart Notifications</h3>
+                    <p class="feature-description">
+                        Never miss important events with intelligent notifications 
+                        that adapt to your preferences and schedule.
+                    </p>
+                    <a href="#" class="feature-link">
+                        Learn more
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Analytics & Insights</h3>
+                    <p class="feature-description">
+                        Get detailed insights into your productivity patterns 
+                        and optimize your time management with data-driven reports.
+                    </p>
+                    <a href="#" class="feature-link">
+                        Learn more
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class="tech-stack" id="tech-stack">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Built with Modern Technology</h2>
+                <p class="section-subtitle">
+                    Powered by cutting-edge technologies to ensure reliability, 
+                    scalability, and exceptional performance.
+                </p>
+            </div>
+            
+            <div class="tech-grid">
+                <div class="tech-category" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Frontend</h3>
+                    <div class="tech-list">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript ES6+</span>
+                        <span class="tech-tag">Responsive Design</span>
+                    </div>
+                </div>
+                
+                <div class="tech-category" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Backend</h3>
+                    <div class="tech-list">
+                        <span class="tech-tag">Python Flask</span>
+                        <span class="tech-tag">RESTful APIs</span>
+                        <span class="tech-tag">Session Management</span>
+                        <span class="tech-tag">MySQL</span>
+                    </div>
+                </div>
+                
+                <div class="tech-category" data-aos="fade-up" data-aos-delay="300">
+                    <h3>AI Integration</h3>
+                    <div class="tech-list">
+                        <span class="tech-tag">Gemini API</span>
+                        <span class="tech-tag">Cohere API</span>
+                        <span class="tech-tag">Groq API</span>
+                        <span class="tech-tag">Natural Language Processing</span>
+                    </div>
+                </div>
+                
+                <div class="tech-category" data-aos="fade-up" data-aos-delay="400">
+                    <h3>Features</h3>
+                    <div class="tech-list">
+                        <span class="tech-tag">Real-time Collaboration</span>
+                        <span class="tech-tag">Time Zone Support</span>
+                        <span class="tech-tag">Mobile Responsive</span>
+                        <span class="tech-tag">Secure Authentication</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Showcase Section -->
+    <section class="app-showcase" id="showcase">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Application Features</h2>
+                <p class="section-subtitle">
+                    Explore the key features and interfaces of the remindeme event management system.
+                </p>
+            </div>
+
+            <!-- Authentication Page -->
+            <div class="demo-section" data-aos="fade-up" data-aos-delay="100">
+                <div class="demo-container">
+                    <div class="demo-content">
+                        <h3>Secure Authentication</h3>
+                        <p>Modern login interface with secure session management and user registration. Features responsive design and real-time form validation.</p>
+                        <div class="demo-features">
+                            <div class="feature-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Session Security</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-user-plus"></i>
+                                <span>User Registration</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>Responsive Design</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="demo-visual">
+                        <img src="assets/images/signin.png" alt="Authentication Page" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Home Dashboard -->
+            <div class="demo-section" data-aos="fade-up" data-aos-delay="200">
+                <div class="demo-container reverse">
+                    <div class="demo-content">
+                        <h3>Home Dashboard</h3>
+                        <p>Centralized command center displaying today's tasks, calendar overview, and quick access to all major features with real-time updates.</p>
+                        <div class="demo-features">
+                            <div class="feature-item">
+                                <i class="fas fa-tasks"></i>
+                                <span>Task Management</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Calendar Integration</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-bolt"></i>
+                                <span>Real-time Updates</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="demo-visual">
+                        <img src="assets/images/home.png" alt="Home Dashboard" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Schedule Management -->
+            <div class="demo-section" data-aos="fade-up" data-aos-delay="300">
+                <div class="demo-container">
+                    <div class="demo-content">
+                        <h3>Schedule Management</h3>
+                        <p>Comprehensive calendar system with interactive event tracking, task management, and color-coded organization for better productivity.</p>
+                        <div class="demo-features">
+                            <div class="feature-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>Interactive Calendar</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-palette"></i>
+                                <span>Color Coding</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-edit"></i>
+                                <span>CRUD Operations</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="demo-visual">
+                        <img src="assets/images/schedule.png" alt="Schedule Management" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Profile -->
+            <div class="demo-section" data-aos="fade-up" data-aos-delay="400">
+                <div class="demo-container reverse">
+                    <div class="demo-content">
+                        <h3>User Profile</h3>
+                        <p>Complete user account management with customizable settings, personal information, and activity tracking for enhanced user experience.</p>
+                        <div class="demo-features">
+                            <div class="feature-item">
+                                <i class="fas fa-user-cog"></i>
+                                <span>Account Settings</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-chart-line"></i>
+                                <span>Activity Tracking</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-lock"></i>
+                                <span>Security Options</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="demo-visual">
+                        <img src="assets/images/profile.png" alt="User Profile" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Collaboration -->
+            <div class="demo-section" data-aos="fade-up" data-aos-delay="500">
+                <div class="demo-container">
+                    <div class="demo-content">
+                        <h3>Team Collaboration</h3>
+                        <p>Multi-user coordination tools with shared calendar access, task assignment, and role-based permissions for seamless teamwork.</p>
+                        <div class="demo-features">
+                            <div class="feature-item">
+                                <i class="fas fa-users"></i>
+                                <span>Team Management</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-share-alt"></i>
+                                <span>Shared Calendars</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-user-shield"></i>
+                                <span>Role Permissions</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="demo-visual">
+                        <img src="assets/images/collaboration.png" alt="Team Collaboration" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Chat Assistant -->
+            <div class="demo-section" data-aos="fade-up" data-aos-delay="600">
+                <div class="demo-container reverse">
+                    <div class="demo-content">
+                        <h3>AI Chat Assistant</h3>
+                        <p>Intelligent chatbot with natural language processing for smart scheduling, automatic task creation, and productivity recommendations.</p>
+                        <div class="demo-features">
+                            <div class="feature-item">
+                                <i class="fas fa-brain"></i>
+                                <span>Natural Language</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-magic"></i>
+                                <span>Auto Task Creation</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-clock"></i>
+                                <span>Smart Scheduling</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="demo-visual">
+                        <img src="assets/images/ai_chat.png" alt="AI Chat Assistant" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Scheduler -->
+            <div class="demo-section" data-aos="fade-up" data-aos-delay="700">
+                <div class="demo-container">
+                    <div class="demo-content">
+                        <h3>AI Schedule Optimizer</h3>
+                        <p>Advanced AI-driven calendar optimization with pattern recognition, conflict resolution, and intelligent time management suggestions.</p>
+                        <div class="demo-features">
+                            <div class="feature-item">
+                                <i class="fas fa-search"></i>
+                                <span>Pattern Analysis</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span>Conflict Resolution</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Smart Suggestions</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="demo-visual">
+                        <img src="assets/images/ai_scheduler.png" alt="AI Schedule Optimizer" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+
+        // Preloader
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Mobile navigation toggle
+        const navToggle = document.getElementById('nav-toggle');
+        const navMenu = document.getElementById('nav-menu');
+
+        navToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            const icon = navToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close mobile menu if open
+                    navMenu.classList.remove('active');
+                    const icon = navToggle.querySelector('i');
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-times');
+                }
+            });
+        });
+
+        // Dropdown functionality for mobile
+        const dropdownToggle = document.querySelector('.dropdown-toggle');
+        const dropdown = document.querySelector('.dropdown');
+        
+        if (dropdownToggle && dropdown) {
+            dropdownToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (window.innerWidth <= 768) {
+                    dropdown.classList.toggle('active');
+                }
+            });
+            
+            // Close dropdown when clicking on dropdown links in mobile
+            const dropdownLinks = document.querySelectorAll('.dropdown-link');
+            dropdownLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        dropdown.classList.remove('active');
+                        navMenu.classList.remove('active');
+                        const icon = navToggle.querySelector('i');
+                        icon.classList.add('fa-bars');
+                        icon.classList.remove('fa-times');
+                    }
+                });
+            });
+        }
+
+        // Active navigation link
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

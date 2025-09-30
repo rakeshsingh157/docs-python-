@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Specifications - Event Management System</title>
+    <link rel="stylesheet" href="assets/css/new-doc-styles.css">
+    <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+    <nav class="doc-nav">
+        <div class="nav-brand">
+            <h2>remindeme</h2>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="back-btn">← Back to Portfolio</a>
+        </div>
+    </nav>
+
+    <div class="doc-container">
+        <aside class="doc-sidebar">
+            <div class="sidebar-section">
+                <h3>Architecture</h3>
+                <ul>
+                    <li><a href="#system-overview">System Overview</a></li>
+                    <li><a href="#tech-stack">Technology Stack</a></li>
+                    <li><a href="#architecture-layers">Architecture Layers</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+                <h3>Backend Systems</h3>
+                <ul>
+                    <li><a href="#flask-framework">Flask Framework</a></li>
+                    <li><a href="#database-design">Database Design</a></li>
+                    <li><a href="#ai-integration">AI Integration</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+                <h3>Frontend Components</h3>
+                <ul>
+                    <li><a href="#page-structure">Page Structure</a></li>
+                    <li><a href="#ui-components">UI Components</a></li>
+                    <li><a href="#responsive-design">Responsive Design</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+                <h3>Security & Performance</h3>
+                <ul>
+                    <li><a href="#security-measures">Security Measures</a></li>
+                    <li><a href="#performance-optimization">Performance</a></li>
+                    <li><a href="#deployment-specs">Deployment</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="doc-content">
+            <header class="doc-header">
+                <h1>Technical Specifications</h1>
+                <p class="doc-subtitle">Complete technical documentation for the Event Management System</p>
+            </header>
+
+            <section id="system-overview" class="doc-section">
+                <h2>🏗️ System Overview</h2>
+                <p>The Event Management System is a full-stack web application built with Flask and MySQL, featuring AI-powered scheduling assistance and collaborative task management capabilities.</p>
+                
+                <div class="spec-grid">
+                    <div class="spec-card">
+                        <h3>Core Features</h3>
+                        <ul>
+                            <li>User authentication & profiles</li>
+                            <li>Task/event creation & management</li>
+                            <li>Calendar-based scheduling</li>
+                            <li>AI-powered task suggestions</li>
+                            <li>Team collaboration & task assignment</li>
+                            <li>Real-time notifications</li>
+                        </ul>
+                    </div>
+                    <div class="spec-card">
+                        <h3>System Requirements</h3>
+                        <ul>
+                            <li>Python 3.8+</li>
+                            <li>MySQL 8.0+</li>
+                            <li>4GB RAM minimum</li>
+                            <li>2+ CPU cores</li>
+                            <li>20GB storage</li>
+                            <li>Stable internet (AI APIs)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tech-stack" class="doc-section">
+                <h2>⚙️ Technology Stack</h2>
+                
+                <div class="tech-stack-grid">
+                    <div class="tech-category">
+                        <h3>Backend</h3>
+                        <div class="tech-items">
+                            <span class="tech-tag">Python 3.9</span>
+                            <span class="tech-tag">Flask 2.3.3</span>
+                            <span class="tech-tag">MySQL 8.0</span>
+                            <span class="tech-tag">SQLAlchemy</span>
+                        </div>
+                    </div>
+                    <div class="tech-category">
+                        <h3>Frontend</h3>
+                        <div class="tech-items">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">Vanilla JavaScript</span>
+                            <span class="tech-tag">AOS Animations</span>
+                        </div>
+                    </div>
+                    <div class="tech-category">
+                        <h3>AI Integration</h3>
+                        <div class="tech-items">
+                            <span class="tech-tag">Google Gemini API</span>
+                            <span class="tech-tag">Cohere API</span>
+                            <span class="tech-tag">Groq API</span>
+                            <span class="tech-tag">Multi-fallback system</span>
+                        </div>
+                    </div>
+                    <div class="tech-category">
+                        <h3>Deployment</h3>
+                        <div class="tech-items">
+                            <span class="tech-tag">Gunicorn</span>
+                            <span class="tech-tag">Nginx</span>
+                            <span class="tech-tag">Systemd</span>
+                            <span class="tech-tag">SSL/TLS</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="architecture-layers" class="doc-section">
+                <h2>🏢 Architecture Layers</h2>
+                
+                <div class="architecture-diagram">
+                    <div class="arch-layer">
+                        <h3>Presentation Layer</h3>
+                        <p>HTML5 pages with responsive CSS and JavaScript for user interaction</p>
+                        <div class="layer-components">
+                            <span>Login/Register UI</span>
+                            <span>Dashboard</span>
+                            <span>Calendar Interface</span>
+                            <span>AI Chat</span>
+                            <span>Profile Management</span>
+                        </div>
+                    </div>
+                    
+                    <div class="arch-arrow">↓</div>
+                    
+                    <div class="arch-layer">
+                        <h3>Application Layer</h3>
+                        <p>Flask framework handling HTTP requests, routing, and business logic</p>
+                        <div class="layer-components">
+                            <span>Authentication Routes</span>
+                            <span>Task Management</span>
+                            <span>API Endpoints</span>
+                            <span>Session Management</span>
+                            <span>File Handling</span>
+                        </div>
+                    </div>
+                    
+                    <div class="arch-arrow">↓</div>
+                    
+                    <div class="arch-layer">
+                        <h3>Data Layer</h3>
+                        <p>MySQL database with optimized schema and indexing</p>
+                        <div class="layer-components">
+                            <span>Users Table</span>
+                            <span>Events Table</span>
+                            <span>Collaborations</span>
+                            <span>Assigned Tasks</span>
+                            <span>Indexes & Constraints</span>
+                        </div>
+                    </div>
+                    
+                    <div class="arch-arrow">↓</div>
+                    
+                    <div class="arch-layer">
+                        <h3>External Services</h3>
+                        <p>AI APIs for intelligent task management and scheduling assistance</p>
+                        <div class="layer-components">
+                            <span>Gemini API (Primary)</span>
+                            <span>Cohere API (Secondary)</span>
+                            <span>Groq API (Fallback)</span>
+                            <span>Failover System</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="flask-framework" class="doc-section">
+                <h2>🐍 Flask Framework Structure</h2>
+                
+                <div class="file-structure">
+                    <h3>Backend File Organization</h3>
+                    <pre><code>Backend/
+├── app.py                    # Main Flask application
+├── database.py              # Database connection & setup
+├── requirements.txt         # Python dependencies
+│
+├── routes/
+│   ├── login_register.py    # Authentication endpoints
+│   ├── home_routes.py       # Dashboard API
+│   ├── user_profile.py      # Profile management
+│   ├── schedule.py          # Calendar operations
+│   ├── tasks.py             # Task CRUD operations
+│   ├── collaboration.py     # Team features
+│   └── ai_assistant.py      # AI chat integration
+│
+├── ai_modules/
+│   ├── ai_scheduler.py      # AI API management
+│   └── task_processor.py    # Task extraction logic
+│
+└── uploads/                 # User file storage</code></pre>
+                </div>
+
+                <div class="api-overview">
+                    <h3>Key API Endpoints</h3>
+                    <div class="endpoint-group">
+                        <h4>Authentication</h4>
+                        <div class="endpoint-item">
+                            <span class="method post">POST</span>
+                            <span class="path">/login</span>
+                            <span class="description">User authentication</span>
+                        </div>
+                        <div class="endpoint-item">
+                            <span class="method post">POST</span>
+                            <span class="path">/register</span>
+                            <span class="description">New user registration</span>
+                        </div>
+                    </div>
+                    
+                    <div class="endpoint-group">
+                        <h4>Task Management</h4>
+                        <div class="endpoint-item">
+                            <span class="method get">GET</span>
+                            <span class="path">/api/tasks/all</span>
+                            <span class="description">Retrieve all user tasks</span>
+                        </div>
+                        <div class="endpoint-item">
+                            <span class="method post">POST</span>
+                            <span class="path">/api/tasks</span>
+                            <span class="description">Create new task</span>
+                        </div>
+                        <div class="endpoint-item">
+                            <span class="method put">PUT</span>
+                            <span class="path">/api/tasks/{id}</span>
+                            <span class="description">Update existing task</span>
+                        </div>
+                    </div>
+                    
+                    <div class="endpoint-group">
+                        <h4>AI Integration</h4>
+                        <div class="endpoint-item">
+                            <span class="method post">POST</span>
+                            <span class="path">/api/ai/chat</span>
+                            <span class="description">AI assistant conversation</span>
+                        </div>
+                        <div class="endpoint-item">
+                            <span class="method post">POST</span>
+                            <span class="path">/api/ai/schedule</span>
+                            <span class="description">AI-powered scheduling</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="database-design" class="doc-section">
+                <h2>🗄️ Database Design</h2>
+                
+                <div class="db-overview">
+                    <h3>Schema Overview</h3>
+                    <p>MySQL database with 4 core tables optimized for performance and data integrity.</p>
+                </div>
+
+                <div class="table-specs">
+                    <div class="table-spec">
+                        <h4>users</h4>
+                        <div class="table-description">User authentication and profile data</div>
+                        <div class="table-fields">
+                            <div class="field-item">
+                                <span class="field-name">user_id</span>
+                                <span class="field-type">VARCHAR(36) PK</span>
+                                <span class="field-desc">UUID primary key</span>
+                            </div>
+                            <div class="field-item">
+                                <span class="field-name">username</span>
+                                <span class="field-type">VARCHAR(50) UNIQUE</span>
+                                <span class="field-desc">Unique username</span>
+                            </div>
+                            <div class="field-item">
+                                <span class="field-name">email</span>
+                                <span class="field-type">VARCHAR(100) UNIQUE</span>
+                                <span class="field-desc">Login credential</span>
+                            </div>
+                            <div class="field-item">
+                                <span class="field-name">password_hash</span>
+                                <span class="field-type">VARCHAR(255)</span>
+                                <span class="field-desc">Bcrypt hashed password</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-spec">
+                        <h4>events</h4>
+                        <div class="table-description">Tasks and events storage with completion tracking</div>
+                        <div class="table-fields">
+                            <div class="field-item">
+                                <span class="field-name">id</span>
+                                <span class="field-type">INT AUTO_INCREMENT PK</span>
+                                <span class="field-desc">Event identifier</span>
+                            </div>
+                            <div class="field-item">
+                                <span class="field-name">user_id</span>
+                                <span class="field-type">VARCHAR(36) FK</span>
+                                <span class="field-desc">References users.user_id</span>
+                            </div>
+                            <div class="field-item">
+                                <span class="field-name">title</span>
+                                <span class="field-type">VARCHAR(255)</span>
+                                <span class="field-desc">Event title</span>
+                            </div>
+                            <div class="field-item">
+                                <span class="field-name">date</span>
+                                <span class="field-type">DATE</span>
+                                <span class="field-desc">Event date (YYYY-MM-DD)</span>
+                            </div>
+                            <div class="field-item">
+                                <span class="field-name">time</span>
+                                <span class="field-type">TIME</span>
+                                <span class="field-desc">Event time (HH:MM:SS)</span>
+                            </div>
+                            <div class="field-item">
+                                <span class="field-name">done</span>
+                                <span class="field-type">BOOLEAN</span>
+                                <span class="field-desc">Completion status</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-spec">
+                        <h4>collaborations</h4>
+                        <div class="table-description">User partnerships and team invitations</div>
+                        <div class="table-fields">
+                            <div class="field-item">
+                                <span class="field-name">inviter_id</span>
+                                <span class="field-type">VARCHAR(36) FK</span>
+                                <span class="field-desc">User who sent invitation</span>
+                            </div>
+                            <div class="field-item">
+                                <span class="field-name">invitee_id</span>
+                                <span class="field-type">VARCHAR(36) FK</span>
+                                <span class="field-desc">User who received invitation</span>
+                            </div>
+                            <div class="field-item">
+                                <span class="field-name">status</span>
+                                <span class="field-type">ENUM</span>
+                                <span class="field-desc">pending/accepted/rejected</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-spec">
+                        <h4>assigned_tasks</h4>
+                        <div class="table-description">Task assignments between collaborators</div>
+                        <div class="table-fields">
+                            <div class="field-item">
+                                <span class="field-name">assigner_id</span>
+                                <span class="field-type">VARCHAR(36) FK</span>
+                                <span class="field-desc">User who assigned task</span>
+                            </div>
+                            <div class="field-item">
+                                <span class="field-name">assignee_id</span>
+                                <span class="field-type">VARCHAR(36) FK</span>
+                                <span class="field-desc">User who received task</span>
+                            </div>
+                            <div class="field-item">
+                                <span class="field-name">event_id</span>
+                                <span class="field-type">INT FK</span>
+                                <span class="field-desc">References events.id</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="db-performance">
+                    <h3>Performance Optimization</h3>
+                    <div class="optimization-grid">
+                        <div class="opt-item">
+                            <h4>Strategic Indexing</h4>
+                            <ul>
+                                <li>idx_user_date (user_id, date)</li>
+                                <li>idx_user_done (user_id, done)</li>
+                                <li>idx_invitee_status (invitee_id, status)</li>
+                            </ul>
+                        </div>
+                        <div class="opt-item">
+                            <h4>Query Optimization</h4>
+                            <ul>
+                                <li>Parameterized queries only</li>
+                                <li>Efficient JOIN operations</li>
+                                <li>User-scoped data isolation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ai-integration" class="doc-section">
+                <h2>🤖 AI Integration Architecture</h2>
+                
+                <div class="ai-overview">
+                    <h3>Multi-API Fallback System</h3>
+                    <p>Robust AI integration with automatic failover across three major AI providers.</p>
+                </div>
+
+                <div class="ai-flow">
+                    <div class="ai-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Primary: Google Gemini</h4>
+                            <p>Gemini-1.5-pro model for advanced natural language understanding</p>
+                        </div>
+                    </div>
+                    <div class="ai-arrow">↓ Fallback</div>
+                    <div class="ai-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Secondary: Cohere</h4>
+                            <p>Command-r-03-2025 model for reliable text processing</p>
+                        </div>
+                    </div>
+                    <div class="ai-arrow">↓ Fallback</div>
+                    <div class="ai-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Tertiary: Groq</h4>
+                            <p>High-speed inference for basic task processing</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ai-capabilities">
+                    <h3>AI Capabilities</h3>
+                    <div class="capability-grid">
+                        <div class="capability-item">
+                            <h4>Natural Language Processing</h4>
+                            <ul>
+                                <li>Task extraction from conversation</li>
+                                <li>Date/time parsing</li>
+                                <li>Priority detection</li>
+                                <li>Context understanding</li>
+                            </ul>
+                        </div>
+                        <div class="capability-item">
+                            <h4>Schedule Analysis</h4>
+                            <ul>
+                                <li>Calendar conflict detection</li>
+                                <li>Optimal time suggestions</li>
+                                <li>Workload balancing</li>
+                                <li>Deadline prioritization</li>
+                            </ul>
+                        </div>
+                        <div class="capability-item">
+                            <h4>Task Management</h4>
+                            <ul>
+                                <li>Automatic task creation</li>
+                                <li>Category assignment</li>
+                                <li>Reminder setup</li>
+                                <li>Progress tracking</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="page-structure" class="doc-section">
+                <h2>📄 Frontend Page Structure</h2>
+                
+                <div class="page-hierarchy">
+                    <h3>Application Pages</h3>
+                    <div class="page-tree">
+                        <div class="page-node">
+                            <h4>index.html</h4>
+                            <p>Authentication gateway with login/register forms</p>
+                        </div>
+                        <div class="page-children">
+                            <div class="page-node">
+                                <h4>home.html</h4>
+                                <p>Dashboard with today's tasks and overview widgets</p>
+                            </div>
+                            <div class="page-node">
+                                <h4>schedule.html</h4>
+                                <p>Calendar interface with monthly/daily views</p>
+                            </div>
+                            <div class="page-node">
+                                <h4>profile.html</h4>
+                                <p>User profile management and settings</p>
+                            </div>
+                            <div class="page-node">
+                                <h4>AiAssistant.html</h4>
+                                <p>AI chat interface for schedule assistance</p>
+                            </div>
+                            <div class="page-node">
+                                <h4>collabration.html</h4>
+                                <p>Team collaboration and task assignment</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="component-architecture">
+                    <h3>Component Architecture</h3>
+                    <div class="component-grid">
+                        <div class="component-item">
+                            <h4>Sidebar Navigation</h4>
+                            <p>Consistent navigation across all main pages with active state management</p>
+                        </div>
+                        <div class="component-item">
+                            <h4>Task Components</h4>
+                            <p>Reusable task cards with status indicators and action buttons</p>
+                        </div>
+                        <div class="component-item">
+                            <h4>Calendar Widget</h4>
+                            <p>Interactive calendar with event highlighting and date selection</p>
+                        </div>
+                        <div class="component-item">
+                            <h4>AI Chat Interface</h4>
+                            <p>Real-time chat UI with typing indicators and message bubbles</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ui-components" class="doc-section">
+                <h2>🎨 UI Components & Styling</h2>
+                
+                <div class="styling-system">
+                    <h3>CSS Architecture</h3>
+                    <div class="css-structure">
+                        <div class="css-file">
+                            <h4>style.css</h4>
+                            <p>Core application styles for main user interface</p>
+                        </div>
+                        <div class="css-file">
+                            <h4>main.css</h4>
+                            <p>Portfolio website styles with modern design system</p>
+                        </div>
+                        <div class="css-file">
+                            <h4>responsive.css</h4>
+                            <p>Mobile-first responsive design for all screen sizes</p>
+                        </div>
+                        <div class="css-file">
+                            <h4>doc-styles.css</h4>
+                            <p>Documentation pages styling with sidebar navigation</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="design-system">
+                    <h3>Design System</h3>
+                    <div class="design-tokens">
+                        <div class="token-group">
+                            <h4>Color Palette</h4>
+                            <div class="color-swatches">
+                                <div class="color-swatch primary-blue">Primary Blue</div>
+                                <div class="color-swatch dark-blue">Dark Blue</div>
+                                <div class="color-swatch light-gray">Light Gray</div>
+                                <div class="color-swatch dark-gray">Dark Gray</div>
+                            </div>
+                        </div>
+                        <div class="token-group">
+                            <h4>Typography</h4>
+                            <div class="typography-stack">
+                                <div class="font-item">
+                                    <span class="font-name">Primary:</span>
+                                    <span class="font-family">'Poppins', sans-serif</span>
+                                </div>
+                                <div class="font-item">
+                                    <span class="font-name">Monospace:</span>
+                                    <span class="font-family">'Fira Code', monospace</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="responsive-design" class="doc-section">
+                <h2>📱 Responsive Design</h2>
+                
+                <div class="breakpoint-system">
+                    <h3>Breakpoint System</h3>
+                    <div class="breakpoint-grid">
+                        <div class="breakpoint-item">
+                            <h4>Desktop</h4>
+                            <span class="breakpoint-size">1024px+</span>
+                            <p>Full sidebar navigation, multi-column layouts</p>
+                        </div>
+                        <div class="breakpoint-item">
+                            <h4>Tablet</h4>
+                            <span class="breakpoint-size">768px - 1023px</span>
+                            <p>Collapsible sidebar, stacked layouts</p>
+                        </div>
+                        <div class="breakpoint-item">
+                            <h4>Mobile</h4>
+                            <span class="breakpoint-size">320px - 767px</span>
+                            <p>Bottom navigation, single column</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="responsive-features">
+                    <h3>Responsive Features</h3>
+                    <ul>
+                        <li>Mobile-first CSS approach</li>
+                        <li>Touch-friendly interface elements</li>
+                        <li>Optimized font sizes and spacing</li>
+                        <li>Adaptive navigation patterns</li>
+                        <li>Progressive enhancement</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="security-measures" class="doc-section">
+                <h2>🔒 Security Implementation</h2>
+                
+                <div class="security-layers">
+                    <h3>Multi-Layer Security</h3>
+                    <div class="security-grid">
+                        <div class="security-item">
+                            <h4>Authentication Security</h4>
+                            <ul>
+                                <li>Bcrypt password hashing</li>
+                                <li>Session-based authentication</li>
+                                <li>Secure session cookies</li>
+                                <li>Login attempt monitoring</li>
+                            </ul>
+                        </div>
+                        <div class="security-item">
+                            <h4>Data Protection</h4>
+                            <ul>
+                                <li>UUID-based user identification</li>
+                                <li>Parameterized SQL queries</li>
+                                <li>Input validation & sanitization</li>
+                                <li>XSS protection headers</li>
+                            </ul>
+                        </div>
+                        <div class="security-item">
+                            <h4>API Security</h4>
+                            <ul>
+                                <li>Environment variable API keys</li>
+                                <li>Request rate limiting</li>
+                                <li>CORS configuration</li>
+                                <li>Error message sanitization</li>
+                            </ul>
+                        </div>
+                        <div class="security-item">
+                            <h4>Database Security</h4>
+                            <ul>
+                                <li>User-scoped data access</li>
+                                <li>Foreign key constraints</li>
+                                <li>Cascade delete protection</li>
+                                <li>Connection encryption</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="performance-optimization" class="doc-section">
+                <h2>⚡ Performance Optimization</h2>
+                
+                <div class="performance-grid">
+                    <div class="perf-category">
+                        <h3>Database Performance</h3>
+                        <ul>
+                            <li>Strategic indexing on frequently queried columns</li>
+                            <li>Query optimization with EXPLAIN analysis</li>
+                            <li>Connection pooling for concurrent users</li>
+                            <li>Efficient JOIN operations</li>
+                        </ul>
+                    </div>
+                    <div class="perf-category">
+                        <h3>Frontend Performance</h3>
+                        <ul>
+                            <li>Minified CSS and JavaScript</li>
+                            <li>Optimized image formats and sizes</li>
+                            <li>Lazy loading for heavy components</li>
+                            <li>CSS Grid for efficient layouts</li>
+                        </ul>
+                    </div>
+                    <div class="perf-category">
+                        <h3>API Performance</h3>
+                        <ul>
+                            <li>AI API fallback system</li>
+                            <li>Response caching strategies</li>
+                            <li>Asynchronous request handling</li>
+                            <li>Error recovery mechanisms</li>
+                        </ul>
+                    </div>
+                    <div class="perf-category">
+                        <h3>Server Performance</h3>
+                        <ul>
+                            <li>Gunicorn WSGI server</li>
+                            <li>Nginx reverse proxy</li>
+                            <li>Static file serving optimization</li>
+                            <li>Process monitoring with systemd</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="deployment-specs" class="doc-section">
+                <h2>🚀 Deployment Specifications</h2>
+                
+                <div class="deployment-overview">
+                    <h3>Production Environment</h3>
+                    <div class="deployment-stack">
+                        <div class="deploy-layer">
+                            <h4>Web Server</h4>
+                            <p>Nginx as reverse proxy with SSL/TLS termination</p>
+                        </div>
+                        <div class="deploy-layer">
+                            <h4>Application Server</h4>
+                            <p>Gunicorn WSGI server with multiple worker processes</p>
+                        </div>
+                        <div class="deploy-layer">
+                            <h4>Database Server</h4>
+                            <p>MySQL 8.0 with InnoDB engine and optimized configuration</p>
+                        </div>
+                        <div class="deploy-layer">
+                            <h4>Process Management</h4>
+                            <p>Systemd service management with auto-restart and monitoring</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="deployment-requirements">
+                    <h3>System Requirements</h3>
+                    <div class="req-grid">
+                        <div class="req-item">
+                            <h4>Minimum Specs</h4>
+                            <ul>
+                                <li>2 CPU cores</li>
+                                <li>4GB RAM</li>
+                                <li>20GB storage</li>
+                                <li>Ubuntu 20.04+</li>
+                            </ul>
+                        </div>
+                        <div class="req-item">
+                            <h4>Recommended Specs</h4>
+                            <ul>
+                                <li>4 CPU cores</li>
+                                <li>8GB RAM</li>
+                                <li>50GB SSD storage</li>
+                                <li>Ubuntu 22.04 LTS</li>
+                            </ul>
+                        </div>
+                        <div class="req-item">
+                            <h4>Network Requirements</h4>
+                            <ul>
+                                <li>Stable internet connection</li>
+                                <li>SSL certificate</li>
+                                <li>Domain name</li>
+                                <li>Firewall configuration</li>
+                            </ul>
+                        </div>
+                        <div class="req-item">
+                            <h4>External Dependencies</h4>
+                            <ul>
+                                <li>Google Gemini API access</li>
+                                <li>Cohere API access</li>
+                                <li>Groq API access</li>
+                                <li>SMTP server (notifications)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="doc-footer">
+                <div class="footer-content">
+                    <p>&copy; 2025 Event Management System. Technical documentation for development and deployment.</p>
+                    <div class="footer-links">
+                        <a href="index.html">Back to Portfolio</a>
+                        <a href="api-documentation.html">API Docs</a>
+                        <a href="database-schema.html">Database Schema</a>
+                        <a href="deployment-guide.html">Deployment Guide</a>
+                    </div>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        // Smooth scrolling for sidebar links
+        document.querySelectorAll('.doc-sidebar a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Active section highlighting
+        const observerOptions = {
+            rootMargin: '-20% 0px -70% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const id = entry.target.getAttribute('id');
+                const link = document.querySelector(`.doc-sidebar a[href="#${id}"]`);
+                if (link) {
+                    if (entry.isIntersecting) {
+                        document.querySelectorAll('.doc-sidebar a').forEach(a => a.classList.remove('active'));
+                        link.classList.add('active');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section[id]').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

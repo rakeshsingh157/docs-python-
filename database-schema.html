@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Schema - remindeme Event Management System</title>
+    <meta name="description" content="Complete database schema and structure for the remindeme event management system with MySQL tables and relationships.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/doc-styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-calendar-check"></i>
+                <span>remindeme</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">← Back to Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-content">
+            <h3>Database Schema</h3>
+            <nav class="sidebar-nav">
+                <a href="#overview" class="sidebar-link active">Overview</a>
+                <a href="#users-table" class="sidebar-link">Users Table</a>
+                <a href="#events-table" class="sidebar-link">Events Table</a>
+                <a href="#collaborations-table" class="sidebar-link">Collaborations</a>
+                <a href="#assigned-tasks-table" class="sidebar-link">Assigned Tasks</a>
+                <a href="#relationships" class="sidebar-link">Entity Relationships</a>
+                <a href="#data-flows" class="sidebar-link">Data Flow Patterns</a>
+                <a href="#performance" class="sidebar-link">Performance & Security</a>
+            </nav>
+            
+            <div class="sidebar-section">
+                <h4>Other Docs</h4>
+                <a href="api-documentation.html" class="sidebar-link">API Documentation</a>
+                <a href="technical-specs.html" class="sidebar-link">Technical Specs</a>
+                <a href="deployment-guide.html" class="sidebar-link">Deployment Guide</a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-wrapper">
+            <!-- Overview -->
+            <section id="overview" class="doc-section">
+                <h1>Database Schema</h1>
+                <p class="lead">
+                    Complete MySQL database structure for the remindeme event management system, 
+                    including all tables, relationships, and data flow patterns.
+                </p>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>Database: event_management_system</h3>
+                        <p><strong>Engine:</strong> MySQL 8.0+ / MariaDB 10.5+</p>
+                        <p><strong>Character Set:</strong> utf8mb4_unicode_ci</p>
+                        <p><strong>Timezone:</strong> IST (Asia/Kolkata)</p>
+                    </div>
+                </div>
+
+                <h2>Schema Overview</h2>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Database Tables</span>
+                    </div>
+                    <pre><code class="language-sql">-- Core Tables
+├── users              # User authentication & profiles
+├── events             # Tasks/events storage
+├── collaborations     # User partnerships
+└── assigned_tasks     # Task assignments
+
+-- Relationships
+users 1:N events (user owns multiple events)
+users 1:N collaborations (user can collaborate with many)
+events 1:1 assigned_tasks (event can be assigned once)
+users N:N users (through collaborations)</code></pre>
+                </div>
+            </section>
+
+            <!-- Users Table -->
+            <section id="users-table" class="doc-section">
+                <h2>Users Table - Authentication & Profiles</h2>
+                <p>Stores user authentication credentials and profile information.</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>CREATE TABLE users</span>
+                        <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code" title="Copy to clipboard">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    <pre><code class="language-sql">CREATE TABLE users (
+    user_id VARCHAR(36) PRIMARY KEY,           -- UUID for user identification
+    username VARCHAR(50) NOT NULL UNIQUE,     -- Unique username
+    email VARCHAR(100) NOT NULL UNIQUE,       -- User email (login credential)
+    password_hash VARCHAR(255) NOT NULL,      -- Hashed password (bcrypt)
+    photo_url VARCHAR(255),                   -- Profile photo path
+    phone VARCHAR(15),                        -- Phone number
+    address TEXT,                             -- User address
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    -- Indexes
+    INDEX idx_email (email),
+    INDEX idx_username (username)
+);</code></pre>
+                </div>
+
+                <h3>Field Descriptions</h3>
+                <div class="params-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Field</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                                <th>Constraints</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>user_id</code></td>
+                                <td>VARCHAR(36)</td>
+                                <td>UUID primary key for user identification</td>
+                                <td>PRIMARY KEY</td>
+                            </tr>
+                            <tr>
+                                <td><code>username</code></td>
+                                <td>VARCHAR(50)</td>
+                                <td>Unique display name for the user</td>
+                                <td>NOT NULL, UNIQUE</td>
+                            </tr>
+                            <tr>
+                                <td><code>email</code></td>
+                                <td>VARCHAR(100)</td>
+                                <td>Email address used for login</td>
+                                <td>NOT NULL, UNIQUE</td>
+                            </tr>
+                            <tr>
+                                <td><code>password_hash</code></td>
+                                <td>VARCHAR(255)</td>
+                                <td>Bcrypt hashed password</td>
+                                <td>NOT NULL</td>
+                            </tr>
+                            <tr>
+                                <td><code>photo_url</code></td>
+                                <td>VARCHAR(255)</td>
+                                <td>Path to profile photo</td>
+                                <td>NULLABLE</td>
+                            </tr>
+                            <tr>
+                                <td><code>phone</code></td>
+                                <td>VARCHAR(15)</td>
+                                <td>Contact phone number</td>
+                                <td>NULLABLE</td>
+                            </tr>
+                            <tr>
+                                <td><code>address</code></td>
+                                <td>TEXT</td>
+                                <td>User's address</td>
+                                <td>NULLABLE</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Events Table -->
+            <section id="events-table" class="doc-section">
+                <h2>Events Table - Tasks/Events Storage</h2>
+                <p>Main table storing all user tasks and events with comprehensive metadata.</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>CREATE TABLE events</span>
+                        <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code" title="Copy to clipboard">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    <pre><code class="language-sql">CREATE TABLE events (
+    id INT AUTO_INCREMENT PRIMARY KEY,        -- Event/task ID
+    user_id VARCHAR(36) NOT NULL,            -- Owner of the event
+    title VARCHAR(255) NOT NULL,             -- Event title
+    description TEXT,                        -- Event description
+    category VARCHAR(50) NOT NULL,           -- Category (work, personal, health, etc.)
+    date DATE NOT NULL,                      -- Event date (YYYY-MM-DD)
+    time TIME NOT NULL,                      -- Event time (HH:MM:SS)
+    done BOOLEAN DEFAULT FALSE,              -- Completion status
+    reminder_setting VARCHAR(20) DEFAULT 'none', -- Reminder preference
+    reminder_datetime DATETIME,              -- Calculated reminder time
+    reminde1 BOOLEAN DEFAULT FALSE,          -- Reminder flag 1
+    reminde2 BOOLEAN DEFAULT FALSE,          -- Reminder flag 2
+    reminde3 BOOLEAN DEFAULT FALSE,          -- Reminder flag 3
+    reminde4 BOOLEAN DEFAULT FALSE,          -- Reminder flag 4
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    -- Foreign Keys
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    
+    -- Performance Indexes
+    INDEX idx_user_date (user_id, date),     -- Optimized for user + date queries
+    INDEX idx_date (date),                   -- Optimized for date range queries
+    INDEX idx_user_done (user_id, done),     -- Optimized for completion status
+    INDEX idx_category (category),           -- Optimized for category filtering
+    INDEX idx_user_time (user_id, date, time) -- Optimized for schedule queries
+);</code></pre>
+                </div>
+
+                <h3>Category Values</h3>
+                <div class="status-codes">
+                    <div class="status-code success">
+                        <span class="code">work</span>
+                        <span class="description">Professional tasks and meetings</span>
+                    </div>
+                    <div class="status-code success">
+                        <span class="code">personal</span>
+                        <span class="description">Personal appointments and activities</span>
+                    </div>
+                    <div class="status-code success">
+                        <span class="code">health</span>
+                        <span class="description">Health-related appointments</span>
+                    </div>
+                    <div class="status-code success">
+                        <span class="code">learning</span>
+                        <span class="description">Educational activities</span>
+                    </div>
+                    <div class="status-code success">
+                        <span class="code">ai-generated</span>
+                        <span class="description">Tasks created by AI assistant</span>
+                    </div>
+                </div>
+
+                <h3>Reminder System</h3>
+                <p>The events table includes a sophisticated reminder system with multiple reminder flags:</p>
+                <div class="code-block">
+                    <pre><code class="language-sql">-- Reminder Settings
+reminder_setting: 'none', '15min', '30min', '1hour', '1day'
+reminder_datetime: Calculated based on event date/time and setting
+reminde1-4: Boolean flags for multiple reminder notifications</code></pre>
+                </div>
+            </section>
+
+            <!-- Collaborations Table -->
+            <section id="collaborations-table" class="doc-section">
+                <h2>Collaborations Table - User Partnerships</h2>
+                <p>Manages collaboration relationships between users for task sharing.</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>CREATE TABLE collaborations</span>
+                        <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code" title="Copy to clipboard">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    <pre><code class="language-sql">CREATE TABLE collaborations (
+    id INT AUTO_INCREMENT PRIMARY KEY,       -- Collaboration ID
+    inviter_id VARCHAR(36) NOT NULL,         -- User who sent invitation
+    invitee_id VARCHAR(36) NOT NULL,         -- User who received invitation
+    status ENUM('pending', 'accepted', 'rejected') DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    -- Foreign Keys
+    FOREIGN KEY (inviter_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (invitee_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    
+    -- Constraints
+    UNIQUE KEY unique_collaboration (inviter_id, invitee_id),
+    
+    -- Performance Indexes
+    INDEX idx_invitee_status (invitee_id, status),
+    INDEX idx_inviter_status (inviter_id, status)
+);</code></pre>
+                </div>
+
+                <h3>Collaboration Status Flow</h3>
+                <div class="status-codes">
+                    <div class="status-code">
+                        <span class="code">pending</span>
+                        <span class="description">Invitation sent, awaiting response</span>
+                    </div>
+                    <div class="status-code success">
+                        <span class="code">accepted</span>
+                        <span class="description">Collaboration established, can assign tasks</span>
+                    </div>
+                    <div class="status-code error">
+                        <span class="code">rejected</span>
+                        <span class="description">Invitation declined</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Assigned Tasks Table -->
+            <section id="assigned-tasks-table" class="doc-section">
+                <h2>Assigned Tasks Table - Task Assignments</h2>
+                <p>Links tasks to collaboration relationships for task assignment tracking.</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>CREATE TABLE assigned_tasks</span>
+                        <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code" title="Copy to clipboard">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    <pre><code class="language-sql">CREATE TABLE assigned_tasks (
+    id INT AUTO_INCREMENT PRIMARY KEY,       -- Assignment ID
+    assigner_id VARCHAR(36) NOT NULL,        -- User who assigned the task
+    assignee_id VARCHAR(36) NOT NULL,        -- User who received the task
+    event_id INT NOT NULL,                   -- Reference to the task/event
+    assigned_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    
+    -- Foreign Keys
+    FOREIGN KEY (assigner_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (assignee_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (event_id) REFERENCES events(id) ON DELETE CASCADE,
+    
+    -- Constraints
+    UNIQUE KEY unique_assignment (event_id),  -- One assignment per event
+    
+    -- Performance Indexes
+    INDEX idx_assignee (assignee_id),
+    INDEX idx_assigner (assigner_id),
+    INDEX idx_event (event_id)
+);</code></pre>
+                </div>
+
+                <h3>Assignment Logic</h3>
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>Task Assignment Process</h3>
+                        <p>1. Task is created in <code>events</code> table with assignee as owner</p>
+                        <p>2. Assignment record is created linking assigner and assignee</p>
+                        <p>3. Assignee sees task in their "Assigned by Others" view</p>
+                        <p>4. Assigner sees task in their "Assigned by Me" view</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Entity Relationships -->
+            <section id="relationships" class="doc-section">
+                <h2>Entity Relationships</h2>
+                <p>Visual representation of table relationships and data flow.</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Entity Relationship Overview</span>
+                    </div>
+                    <pre><code class="language-sql">-- Table Relationships
+users (1) ──── (N) events
+  │                │
+  │                │
+  └── (1) collaborations (N) ──── (1) users
+         │
+         │
+    assigned_tasks (N) ──── (1) events
+
+-- Key Relationships:
+• users.user_id → events.user_id (1:N)
+• users.user_id → collaborations.inviter_id (1:N)
+• users.user_id → collaborations.invitee_id (1:N)
+• users.user_id → assigned_tasks.assigner_id (1:N)
+• users.user_id → assigned_tasks.assignee_id (1:N)
+• events.id → assigned_tasks.event_id (1:1)</code></pre>
+                </div>
+            </section>
+
+            <!-- Data Flow Patterns -->
+            <section id="data-flows" class="doc-section">
+                <h2>Data Flow Patterns</h2>
+                <p>Common database operations and query patterns used throughout the system.</p>
+
+                <h3>User Registration & Authentication</h3>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Registration Flow</span>
+                    </div>
+                    <pre><code class="language-sql">-- Registration
+INSERT INTO users (user_id, username, email, password_hash) 
+VALUES (UUID(), 'john_doe', 'john@example.com', 'hashed_password');
+
+-- Login Verification
+SELECT user_id, username, email FROM users 
+WHERE email = 'john@example.com' AND password_hash = 'hashed_password';</code></pre>
+                </div>
+
+                <h3>Task/Event Operations</h3>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Task CRUD Operations</span>
+                    </div>
+                    <pre><code class="language-sql">-- Create Task
+INSERT INTO events (user_id, title, description, category, date, time) 
+VALUES ('user-uuid', 'Meeting', 'Team standup', 'work', '2025-09-30', '09:00:00');
+
+-- Get User Tasks (with IST timezone consideration)
+SELECT * FROM events 
+WHERE user_id = 'user-uuid' 
+ORDER BY date, time;
+
+-- Update Task Status
+UPDATE events 
+SET done = TRUE, updated_at = CURRENT_TIMESTAMP 
+WHERE id = 123 AND user_id = 'user-uuid';
+
+-- Get Today's Tasks (IST)
+SELECT * FROM events 
+WHERE user_id = 'user-uuid' 
+  AND date = CURDATE()
+ORDER BY time;</code></pre>
+                </div>
+
+                <h3>Collaboration Operations</h3>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Collaboration Queries</span>
+                    </div>
+                    <pre><code class="language-sql">-- Send Collaboration Invite
+INSERT INTO collaborations (inviter_id, invitee_id) 
+VALUES ('inviter-uuid', 'invitee-uuid');
+
+-- Accept Collaboration
+UPDATE collaborations 
+SET status = 'accepted', updated_at = CURRENT_TIMESTAMP 
+WHERE id = 1 AND invitee_id = 'invitee-uuid';
+
+-- Get User's Collaborators
+SELECT u.user_id, u.username, u.email, u.photo_url
+FROM users u
+JOIN collaborations c ON (u.user_id = c.inviter_id OR u.user_id = c.invitee_id)
+WHERE (c.inviter_id = 'user-uuid' OR c.invitee_id = 'user-uuid') 
+  AND c.status = 'accepted' 
+  AND u.user_id != 'user-uuid';</code></pre>
+                </div>
+
+                <h3>Calendar View Queries</h3>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Calendar Month View</span>
+                    </div>
+                    <pre><code class="language-sql">-- Monthly Task Overview (for calendar coloring)
+SELECT 
+    DAY(date) as day,
+    SUM(CASE WHEN done = FALSE THEN 1 ELSE 0 END) > 0 as hasPending,
+    SUM(CASE WHEN done = TRUE THEN 1 ELSE 0 END) > 0 as hasCompleted
+FROM events 
+WHERE user_id = 'user-uuid' 
+  AND YEAR(date) = 2025 
+  AND MONTH(date) = 9
+GROUP BY DAY(date);</code></pre>
+                </div>
+            </section>
+
+            <!-- Performance & Security -->
+            <section id="performance" class="doc-section">
+                <h2>Performance & Security</h2>
+                <p>Database optimization, security considerations, and maintenance procedures.</p>
+
+                <h3>Performance Optimization</h3>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Index Strategy</span>
+                    </div>
+                    <pre><code class="language-sql">-- Strategic Indexing for Performance
+CREATE INDEX idx_users_email ON users(email);
+CREATE INDEX idx_events_user_date ON events(user_id, date);
+CREATE INDEX idx_events_date_range ON events(date, time);
+CREATE INDEX idx_collaborations_invitee_status ON collaborations(invitee_id, status);
+CREATE INDEX idx_assigned_tasks_assignee ON assigned_tasks(assignee_id);
+
+-- Analyze tables for optimization
+ANALYZE TABLE users, events, collaborations, assigned_tasks;</code></pre>
+                </div>
+
+                <h3>Security Measures</h3>
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>Security Implementation</h3>
+                        <p><strong>Password Hashing:</strong> Bcrypt with salt rounds</p>
+                        <p><strong>UUID Usage:</strong> Non-sequential user IDs</p>
+                        <p><strong>Foreign Key Constraints:</strong> Referential integrity</p>
+                        <p><strong>Parameterized Queries:</strong> SQL injection prevention</p>
+                    </div>
+                </div>
+
+                <h3>Timezone Handling</h3>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>IST Timezone Implementation</span>
+                    </div>
+                    <pre><code class="language-sql">-- IST (Indian Standard Time) Handling
+-- All datetime operations use Asia/Kolkata timezone in application layer
+-- Database stores local time values without timezone data
+
+-- Date/Time Storage Pattern
+date: '2025-09-30'        -- YYYY-MM-DD format
+time: '14:30:00'          -- HH:MM:SS format
+
+-- Timestamps with automatic updates
+created_at: '2025-09-29 14:30:45'
+updated_at: '2025-09-29 14:30:45'</code></pre>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    
+    <script>
+        // Smooth scrolling for sidebar links
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Update active link
+                    document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Update active link on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.doc-section');
+            const sidebarLinks = document.querySelectorAll('.sidebar-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            sidebarLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Copy code function
+        function copyCode(button) {
+            const codeBlock = button.closest('.code-block').querySelector('code');
+            const text = codeBlock.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const icon = button.querySelector('i');
+                icon.classList.remove('fa-copy');
+                icon.classList.add('fa-check');
+                
+                setTimeout(() => {
+                    icon.classList.remove('fa-check');
+                    icon.classList.add('fa-copy');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
